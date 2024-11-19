@@ -21,7 +21,7 @@ public class Racer extends Thread {
         return distance;
     }
 
-    public void makeStep() {
+    private void makeStep() {
         distance++;
     }
 
@@ -40,7 +40,6 @@ public class Racer extends Thread {
     public void run() {
         while (distance < race.getDistance()) {
             makeStep();
-            System.out.printf("%s - %s\n", name, distance);
             makeWaiting();
         }
         race.setToTable(this);
