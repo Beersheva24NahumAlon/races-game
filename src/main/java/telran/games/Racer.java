@@ -42,6 +42,6 @@ public class Racer extends Thread {
             makeStep();
             makeWaiting();
         }
-        race.setChampion(this);
+        race.setChampion(number);
     }
 }

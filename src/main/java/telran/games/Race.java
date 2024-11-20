@@ -46,10 +46,10 @@ public class Race {
         });
     }
 
-    public void setChampion(Racer racer) {
+    public void setChampion(int number) {
         if (championNumber == null) {
             championNumber = new AtomicInteger();
-            championNumber.set(racer.getNumber());
+            championNumber.set(number);
         }
     }
 
