@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 public class Race {
     private int distance;
     private List<Racer> racers = new LinkedList<>();
-    private AtomicInteger championNumber = new AtomicInteger(0);
+    AtomicInteger championNumber = new AtomicInteger(0);
 
     public int getDistance() {
         return distance;
@@ -44,12 +44,6 @@ public class Race {
             } catch (InterruptedException e) {
             }
         });
-    }
-
-    public void setChampion(int number) {
-        if (championNumber.get() == 0) {
-            championNumber.set(number);
-        }
     }
 
     public void printChampion() {

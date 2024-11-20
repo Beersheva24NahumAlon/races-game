@@ -42,6 +42,6 @@ public class Racer extends Thread {
             makeStep();
             makeWaiting();
         }
-        race.setChampion(number);
+        race.championNumber.compareAndSet(0, number);
     }
 }
