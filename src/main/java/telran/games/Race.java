@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 public class Race {
     private int distance;
     private List<Racer> racers = new LinkedList<>();
-    private List<Racer> table = new LinkedList<>();
+    private Racer champion = null;
 
     public int getDistance() {
         return distance;
@@ -45,11 +45,13 @@ public class Race {
         });
     }
 
-    public void setToTable(Racer racer) {
-        table.add(racer);
+    public void setChampion(Racer racer) {
+        if (champion == null) {
+            champion = racer;
+        }
     }
 
     public void printChampion() {
-        System.out.printf("The champion is - %s", table.getFirst().getRacerName());
+        System.out.printf("The champion is - %s", champion.getRacerName());
     }
 }
