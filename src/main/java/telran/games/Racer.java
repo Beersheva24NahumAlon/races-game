@@ -5,16 +5,16 @@ import java.util.Random;
 public class Racer extends Thread {
     private static final int MAX_WAITING = 5;
 
-    private String name;
+    private int number;
     private int distance = 0;
     private Race race;
 
-    public Racer(String name) {
-        this.name = name;
+    public Racer(int id) {
+        this.number = id;
     }
 
-    public String getRacerName() {
-        return name; 
+    public int getNumber() {
+        return number; 
     }
 
     public int getDistance() {

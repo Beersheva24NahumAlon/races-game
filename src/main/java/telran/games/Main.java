@@ -1,12 +1,14 @@
 package telran.games;
 
+import telran.view.*;
+
 public class Main {
-    private static final int N_RACERS = 5;
-    private static final int DISTANCE = 30;
-    
     public static void main(String[] args) {
-        Race race = new Race(DISTANCE);
-        race.setupRace(N_RACERS);
+        InputOutput io = new StandardInputOutput();
+        int nRacers = io.readDouble("Enter count of racers", "Wrong count of racers").intValue();
+        int distance = io.readDouble("Enter distance of race", "Wrong distance of race").intValue();
+        Race race = new Race(distance);
+        race.setupRace(nRacers);
         race.startRace();
         race.printChampion();
     }

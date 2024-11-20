@@ -2,12 +2,13 @@ package telran.games;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 public class Race {
     private int distance;
     private List<Racer> racers = new LinkedList<>();
-    private Racer champion = null;
+    private AtomicInteger championNumber = null;
 
     public int getDistance() {
         return distance;
@@ -24,7 +25,7 @@ public class Race {
 
     public void setupRace(int nRacers) {
         IntStream.range(1, nRacers + 1)
-                .forEach(i -> addRacerToRace(new Racer("Racer #%d".formatted(i))));
+                .forEach(i -> addRacerToRace(new Racer(i)));
     }
 
     public void startRace() {
@@ -46,12 +47,13 @@ public class Race {
     }
 
     public void setChampion(Racer racer) {
-        if (champion == null) {
-            champion = racer;
+        if (championNumber == null) {
+            championNumber = new AtomicInteger();
+            championNumber.set(racer.getNumber());
         }
     }
 
     public void printChampion() {
-        System.out.printf("The champion is - %s", champion.getRacerName());
+        System.out.printf("The champion is racer #%d", championNumber.get());
     }
 }
