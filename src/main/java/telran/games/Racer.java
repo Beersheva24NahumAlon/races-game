@@ -38,7 +38,8 @@ public class Racer extends Thread {
 
     @Override
     public void run() {
-        while (distance < race.getDistance()) {
+        int raceDistance = race.getDistance();
+        while (distance < raceDistance) {
             makeStep();
             makeWaiting();
         }
