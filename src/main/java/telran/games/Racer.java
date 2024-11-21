@@ -1,5 +1,6 @@
 package telran.games;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 
 public class Racer extends Thread {
@@ -7,6 +8,7 @@ public class Racer extends Thread {
 
     private int number;
     private int distance = 0;
+    private LocalDateTime finishTime;
     private Race race;
 
     public Racer(int id) {
@@ -19,6 +21,10 @@ public class Racer extends Thread {
 
     public int getDistance() {
         return distance;
+    }
+
+    public LocalDateTime getFinishTime() {
+        return finishTime;
     }
 
     private void makeStep() {
@@ -43,6 +49,9 @@ public class Racer extends Thread {
             makeStep();
             makeWaiting();
         }
-        race.championNumber.compareAndSet(0, number);
+        synchronized(race) {
+            finishTime = LocalDateTime.now();
+            race.resultTable.add(this);
+        }
     }
 }

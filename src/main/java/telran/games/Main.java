@@ -10,6 +10,6 @@ public class Main {
         Race race = new Race(distance);
         race.setupRace(nRacers);
         race.startRace();
-        race.printChampion();
+        race.printResults();
     }
 }

@@ -1,14 +1,15 @@
 package telran.games;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 public class Race {
     private int distance;
+    private LocalDateTime startTime;
     private List<Racer> racers = new LinkedList<>();
-    AtomicInteger championNumber = new AtomicInteger(0);
+    List<Racer> resultTable = new LinkedList<>();
 
     public int getDistance() {
         return distance;
@@ -34,6 +35,7 @@ public class Race {
     }
 
     private void startRacers() {
+        startTime = LocalDateTime.now();
         racers.stream().forEach(Racer::start);
     }
 
@@ -46,7 +48,9 @@ public class Race {
         });
     }
 
-    public void printChampion() {
-        System.out.printf("The champion is racer #%d", championNumber.get());
-    }
+    public void printResults() {
+        System.out.println("| Place | Number |           Start time          |            Finish time        |");
+        IntStream.range(0, resultTable.size()).forEach(i -> System.out.printf("| %5d | %6d | %s | %s |\n",
+                i + 1, resultTable.get(i).getNumber(), startTime, resultTable.get(i).getFinishTime()));
+    } 
 }
