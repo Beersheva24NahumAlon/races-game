@@ -10,6 +10,7 @@ public class Race {
     private LocalDateTime startTime;
     private List<Racer> racers = new LinkedList<>();
     List<Racer> resultTable = new LinkedList<>();
+    final Object lock = new Object();
 
     public int getDistance() {
         return distance;
@@ -49,8 +50,11 @@ public class Race {
     }
 
     public void printResults() {
+        System.out.println("|-------|--------|-------------------------------|-------------------------------|");
         System.out.println("| Place | Number |           Start time          |            Finish time        |");
-        IntStream.range(0, resultTable.size()).forEach(i -> System.out.printf("| %5d | %6d | %s | %s |\n",
+        System.out.println("|-------|--------|-------------------------------|-------------------------------|");
+        IntStream.range(0, resultTable.size()).forEach(i -> System.out.printf("| %5d | %6d | %29s | %29s |\n",
                 i + 1, resultTable.get(i).getNumber(), startTime, resultTable.get(i).getFinishTime()));
+        System.out.println("|-------|--------|-------------------------------|-------------------------------|");
     } 
 }

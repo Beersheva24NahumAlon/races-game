@@ -49,7 +49,7 @@ public class Racer extends Thread {
             makeStep();
             makeWaiting();
         }
-        synchronized(race) {
+        synchronized(race.lock) {
             finishTime = LocalDateTime.now();
             race.resultTable.add(this);
         }
