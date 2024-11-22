@@ -1,6 +1,7 @@
 package telran.games;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -50,12 +51,13 @@ public class Race {
     }
 
     public void printResults() {
-        System.out.println("|-------|--------|-------------------------------|-------------------------------|");
-        System.out.println("| Place | Number |           Start time          |            Finish time        |");
-        System.out.println("|-------|--------|-------------------------------|-------------------------------|");
+        System.out.println("|-------|--------|--------------|");
+        System.out.println("| Place | Number | Running time |");
+        System.out.println("|-------|--------|--------------|");
         IntStream.range(0, resultTable.size())
-                .forEach(i -> System.out.printf("| %5d | %6d | %29s | %29s |\n",
-                        i + 1, resultTable.get(i).getNumber(), startTime, resultTable.get(i).getFinishTime()));
-        System.out.println("|-------|--------|-------------------------------|-------------------------------|");
+                .forEach(i -> System.out.printf("| %5d | %6d | %9d ms |\n",
+                        i + 1, resultTable.get(i).getNumber(), 
+                        ChronoUnit.MILLIS.between(startTime, resultTable.get(i).getFinishTime())));
+        System.out.println("|-------|--------|--------------|");
     }
 }
