@@ -53,8 +53,9 @@ public class Race {
         System.out.println("|-------|--------|-------------------------------|-------------------------------|");
         System.out.println("| Place | Number |           Start time          |            Finish time        |");
         System.out.println("|-------|--------|-------------------------------|-------------------------------|");
-        IntStream.range(0, resultTable.size()).forEach(i -> System.out.printf("| %5d | %6d | %29s | %29s |\n",
-                i + 1, resultTable.get(i).getNumber(), startTime, resultTable.get(i).getFinishTime()));
+        IntStream.range(0, resultTable.size())
+                .forEach(i -> System.out.printf("| %5d | %6d | %29s | %29s |\n",
+                        i + 1, resultTable.get(i).getNumber(), startTime, resultTable.get(i).getFinishTime()));
         System.out.println("|-------|--------|-------------------------------|-------------------------------|");
-    } 
+    }
 }
