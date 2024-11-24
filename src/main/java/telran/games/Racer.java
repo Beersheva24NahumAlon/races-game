@@ -33,8 +33,9 @@ public class Racer extends Thread {
     }
 
     private void makeWaiting() {
+        Random random = new Random();
         try {
-            sleep(new Random().nextInt(MAX_WAITING));
+            sleep(random.nextInt(MAX_WAITING));
         } catch (InterruptedException e) {
         }
     }
