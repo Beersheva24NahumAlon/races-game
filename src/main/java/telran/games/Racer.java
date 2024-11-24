@@ -20,10 +20,6 @@ public class Racer extends Thread {
         return number; 
     }
 
-    public int getDistance() {
-        return distance;
-    }
-
     public LocalDateTime getFinishTime() {
         return finishTime;
     }

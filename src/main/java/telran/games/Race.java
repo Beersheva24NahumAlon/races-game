@@ -50,9 +50,9 @@ public class Race {
         System.out.println("|-------|--------|--------------|");
         IntStream.range(0, resultTable.size())
                 .forEach(i -> {
-                        Racer racer = resultTable.get(i);
-                        System.out.printf("| %5d | %6d | %9d ms |\n",
-                        i + 1, racer.getNumber(), ChronoUnit.MILLIS.between(startTime, racer.getFinishTime()));
+                    Racer racer = resultTable.get(i);
+                    long time = ChronoUnit.MILLIS.between(startTime, racer.getFinishTime());
+                    System.out.printf("| %5d | %6d | %9d ms |\n", i + 1, racer.getNumber(), time);
                 });
         System.out.println("|-------|--------|--------------|");
     }
