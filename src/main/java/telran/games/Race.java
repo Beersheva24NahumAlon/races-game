@@ -10,8 +10,7 @@ public class Race {
     private int distance;
     private LocalDateTime startTime;
     private List<Racer> racers = new LinkedList<>();
-    List<Racer> resultTable = new LinkedList<>();
-    final Object lock = new Object();
+    private List<Racer> resultTable = new LinkedList<>();
 
     public int getDistance() {
         return distance;
@@ -21,14 +20,9 @@ public class Race {
         this.distance = distance;
     }
 
-    private void addRacerToRace(Racer racer) {
-        racers.add(racer);
-        racer.setRace(this);
-    }
-
     public void setupRace(int nRacers) {
         IntStream.range(1, nRacers + 1)
-                .forEach(i -> addRacerToRace(new Racer(i)));
+                .forEach(i -> racers.add(new Racer(i, this)));
     }
 
     public void startRace() {
@@ -59,5 +53,9 @@ public class Race {
                         i + 1, resultTable.get(i).getNumber(), 
                         ChronoUnit.MILLIS.between(startTime, resultTable.get(i).getFinishTime())));
         System.out.println("|-------|--------|--------------|");
+    }
+
+    public void addRacerToResultTable(Racer racer) {
+        resultTable.add(racer);
     }
 }

@@ -9,10 +9,11 @@ public class Racer extends Thread {
     private int number;
     private int distance = 0;
     private LocalDateTime finishTime;
-    private Race race;
+    private final Race race;
 
-    public Racer(int id) {
+    public Racer(int id, Race race) {
         this.number = id;
+        this.race = race;
     }
 
     public int getNumber() {
@@ -38,10 +39,6 @@ public class Racer extends Thread {
         }
     }
 
-    public void setRace(Race race) {
-        this.race = race;
-    }
-
     @Override
     public void run() {
         int raceDistance = race.getDistance();
@@ -49,9 +46,9 @@ public class Racer extends Thread {
             makeStep();
             makeWaiting();
         }
-        synchronized(race.lock) {
+        synchronized(race) {
             finishTime = LocalDateTime.now();
-            race.resultTable.add(this);
+            race.addRacerToResultTable(this);
         }
     }
 }
