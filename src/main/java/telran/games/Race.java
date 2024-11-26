@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.locks.*;
 import java.util.stream.IntStream;
 
 public class Race {
@@ -11,6 +12,7 @@ public class Race {
     private LocalDateTime startTime;
     private List<Racer> racers = new LinkedList<>();
     private List<Racer> resultTable = new LinkedList<>();
+    Lock lock = new ReentrantLock(true);
 
     public int getDistance() {
         return distance;
